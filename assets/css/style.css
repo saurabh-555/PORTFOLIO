@@ -317,11 +317,10 @@ main {
 .sidebar {
   margin-bottom: 15px;
   max-height: 112px;
-  overflow: hidden;
-  transition: var(--transition-2);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
-
-.sidebar.active { max-height: 405px; }
 
 .sidebar-info {
   position: relative;
@@ -425,6 +424,8 @@ main {
 .contact-info :is(.contact-link, time, address) {
   color: var(--white-2);
   font-size: var(--fs-8);
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .contact-info address { font-style: normal; }
@@ -1573,7 +1574,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    * REUSED STYLE
    */
 
-  .sidebar, article { width: 700px; }
+  .sidebar, article { width: 750px; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
@@ -1692,7 +1693,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar, article {
-    width: 950px;
+    width: 1000px;
     box-shadow: var(--shadow-5);
   }
 
@@ -1830,9 +1831,17 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .main-content {
-    min-width: 75%;
-    width: 75%;
+    min-width: 67.5%;
+    width: 67.5%;
     margin: 0;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .main-content::-webkit-scrollbar {
+    display: none;
   }
 
 
@@ -1842,13 +1851,20 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
+    width: 32.5%;
     position: sticky;
     top: 60px;
-    max-height: max-content;
-    height: 100%;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     margin-bottom: 0;
     padding-top: 60px;
     z-index: 1;
+  }
+  .sidebar::-webkit-scrollbar {
+    display: none;
   }
 
   .sidebar-info { flex-direction: column; }
